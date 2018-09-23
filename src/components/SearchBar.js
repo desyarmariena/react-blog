@@ -17,10 +17,13 @@ const SearchBar = props => {
 const styles = {
     inputSearch: {
         width: 500,
-        height: 20,
+        height: 20,    
     },
     contentSearch: {
+        margin: 0,
+        padding: 0,
         backgroundColor: "red",
+        width: "100%",
         height: 100,
         justifyContent: "center",
         alignItems: "center",
