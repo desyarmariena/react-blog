@@ -12,17 +12,27 @@ class App extends Component {
         }
     }
     
-    componentDidMount() {
+    /* componentDidMount() {
         setTimeout(() => {
             //cara mengubah state
             this.setState( {loading: false} )
         }, 1000)
+    } */
+
+    // untuk mengambil semua yang diketik di search bar
+    handleTypeSearch = event => {
+        this.setState( {
+            search: event.target.value
+        })
+        console.log(event.target.value);
     }
 
     render() {
         return (
             // <h1>Loading : { JSON.stringify(this.state.loading) }</h1>
-            <SearchBar/>
+            <SearchBar 
+             search={ this.state.search }
+             onChangeSearch={ this.handleTypeSearch } />
         )
     }
 }

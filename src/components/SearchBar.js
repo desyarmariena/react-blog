@@ -3,7 +3,11 @@ import React from 'react'
 const SearchBar = props => {
     return(
         <div>
-            Search bar must be here
+            <input 
+             type="text"
+             placeholder="Search articles here..." 
+             value={props.search}
+             onChange={props.onChangeSearch} />
         </div>
     )
 }
