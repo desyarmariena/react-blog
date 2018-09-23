@@ -47,12 +47,17 @@ class App extends Component {
     handleGetBlogs = () => {
         fetch(link)
           .then( res => res.json() )
-          .then( res => this.setState({ blogs: res, blogsFiltered: res }))
+          .then( res => this.setState({ blogs: res, blogsFiltered: res, loading: false }))
     }
 
     render() {
 
-        console.log( this.state.blogsFiltered )
+        // loading sampai proses penampilan blog selesai
+        if(this.state.loading === true){
+            return (
+                <h1>Loading</h1>
+            )
+        }
 
         return (
             <div>
