@@ -13,8 +13,9 @@ class App extends Component {
         //inisialisasi data/state
         this.state = {
             loading: true,            
-            search: "",
-            blogs: []
+            //search: "",
+            blogs: [],
+            blogsFiltered: []
         }
     }
     
@@ -31,8 +32,13 @@ class App extends Component {
 
     // method untuk mengambil semua yang diketik di search bar
     handleTypeSearch = event => {
+        const blogsFiltered = this.state.blogs.filter((blog) => {
+            return blog.title.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1
+        })
+
+        //update state blog sesuai yang diketik
         this.setState( {
-            search: event.target.value
+            blogsFiltered: blogsFiltered
         })
         /* console.log(this.state.search); */
     }
@@ -41,12 +47,12 @@ class App extends Component {
     handleGetBlogs = () => {
         fetch(link)
           .then( res => res.json() )
-          .then( res => this.setState({ blogs: res }))
+          .then( res => this.setState({ blogs: res, blogsFiltered: res }))
     }
 
     render() {
 
-        console.log( this.state.blogs )
+        console.log( this.state.blogsFiltered )
 
         return (
             <div>
@@ -55,10 +61,14 @@ class App extends Component {
                 search={ this.state.search }
                 onChangeSearch={ this.handleTypeSearch }
                 />
-                { this.state.blogs.map((blog, index) => (
-                    <BlogList 
-                    title="Title 1"
-                    content="Content 1"
+                {/* Looping untuk menampilkan data blog */}
+                { this.state.blogsFiltered.map((blog, index) => (
+                    <BlogList
+                        key={index}
+                        title={blog.title}
+                        author={blog.author}
+                        date={blog.created_at}
+                        content={blog.content}
                     />
                 ))}
             </div>
