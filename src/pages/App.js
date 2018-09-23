@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import SearchBar from '../components/SearchBar'
 
 class App extends Component {
     // extends React Component agar lifecycle React dapat dijalankan
@@ -20,7 +21,8 @@ class App extends Component {
 
     render() {
         return (
-            <h1>Loading : { JSON.stringify(this.state.loading) }</h1>
+            // <h1>Loading : { JSON.stringify(this.state.loading) }</h1>
+            <SearchBar/>
         )
     }
 }
